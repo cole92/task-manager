@@ -4,24 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Task Manager</h1>
-        <form id="task-form">
-            <input type="text" id="task-input" placeholder="Enter new task" required>
-            <button type="submit">Add Task</button>
+        <form id="task-form" class="d-flex mb-3">
+            <input type="text" id="task-input" class="form-control me-2" placeholder="Enter new task" required>
+            <button type="submit" class="btn btn-dark"><i class="fas fa-plus"></i> Add Task</button>
         </form>
         
-        <div class="filter-buttons">
-            <button id="filter-all">All</button>
-            <button id="filter-completed">Completed</button>
-            <button id="filter-pending">Pending</button>
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="filter-buttons">
+                <div class="dropdown">
+                    <button class="btn btn-secondary filter-btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Filter Tasks
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item" href="#" id="filter-all">All</a></li>
+                        <li><a class="dropdown-item" href="#" id="filter-completed">Completed</a></li>
+                        <li><a class="dropdown-item" href="#" id="filter-pending">Pending</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sort-buttons ms-3">
+                <div class="dropdown">
+                    <button class="btn btn-secondary sort-btn dropdown-toggle" type="button" id="dropdownSortButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Sort Tasks
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownSortButton">
+                        <li><a class="dropdown-item" href="#" id="sort-date">Date</a></li>
+                        <li><a class="dropdown-item" href="#" id="sort-priority">Priority</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <ul id="task-list"></ul>
+        
+        <ul id="task-list" class="list-group"></ul>
     </div>
 
     <script type="module" src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
