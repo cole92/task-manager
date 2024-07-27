@@ -18,18 +18,16 @@ body {
     padding: 20px;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: 90vh; /* Ogranicavam visinu kontejnera */
 }
 
 h1 {
-    text-align:left;
+    text-align: left;
     margin-bottom: 20px;
     font-weight: 700;
     font-size: 2.5rem;
-}
-
-.completed {
-    text-decoration: line-through;
-    background: #d4edda;
 }
 
 /* Stilizacija za input polje */
@@ -58,8 +56,7 @@ input::placeholder {
     font-family: 'Montserrat', sans-serif;
 }
 
-
-/* Filter i sort button i dropDown*/
+/* Filter i sort button i dropDown */
 .filter-buttons .btn {
     font-family: 'Montserrat', sans-serif;
 }
@@ -95,4 +92,99 @@ input::placeholder {
 }
 .filter-btn:hover, .sort-btn:hover {
     background-color: #343a40;
+}
+
+/* Dugme za brisanje i oznacavanje zadatka kao zavrsenog */
+.checkButtons {
+    margin: 5px;
+    font-size: 0.7rem; 
+    padding: 0.2rem 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    flex: 1;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #6c757d;
+    color: #fff;
+}
+.checkButtons:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.checkButtons:hover {
+    transform: scale(1.05);
+}
+.complete-btn:hover {
+    background-color: #003873;
+}
+.delete-btn:hover {
+    background-color: #80001a;
+}
+.checkButtons i {
+    color: #fff;
+}
+
+/* Stilovi za kartice i grid sistem za prikaz zadataka */
+.task-card {
+    position: relative;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.task-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.task-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.task-card .card-text {
+    font-size: 1rem;
+}
+.task-card .card-body .btn-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Stilovi za prioritete */
+.task-card .priority-high {
+    border-left: 4px solid red;
+}
+.task-card .priority-medium {
+    border-left: 4px solid orange;
+}
+.task-card .priority-low {
+    border-left: 4px solid green;
+}
+/* Ogranicavanje visine naslova */
+.card-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Blagi hover efekat za kartice */
+.task-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.scrollable-content {
+    overflow-y: auto;
+    overflow-x: hidden; 
+    flex-grow: 1; 
+    scrollbar-width: none; /* Sakriva skrol bar u Firefoxu */
+    -ms-overflow-style: none;  /* Sakriva skrol bar u IE i Edge */
+}
+.scrollable-content::-webkit-scrollbar {
+    display: none; /* Sakriva skrol bar u Chrome, Safari i Opera */
 }
