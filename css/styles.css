@@ -155,6 +155,19 @@ input::placeholder {
     margin-top: 10px;
 }
 
+/* Stilovi deaktiviranje - aktiviranje zadataka */
+.completed {
+    text-decoration: line-through;
+    background: #d4edda;
+    opacity: 0.6;
+}
+.completed .card-title, .completed .card-text, .completed .btn-group {
+    pointer-events: none;
+}
+.completed .checkButtons {
+    pointer-events: auto;
+}
+
 /* Stilovi za prioritete */
 .task-card .priority-high {
     border-left: 4px solid red;

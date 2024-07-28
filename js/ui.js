@@ -19,7 +19,7 @@ export const displayTasks = () => {
                 <p class="card-text"><small class="text-muted">Created on: ${task.date}</small></p>
                 <div class="btn-group">
                     <button class="checkButtons btn complete-btn"><i class="fas fa-check"></i></button>
-                    <button class="checkButtons btn delete-btn"><i class="fas fa-trash"></i></button>
+                    <button class="checkButtons btn delete-btn"><i class="fas fa-trash delete-btn"></i></button>
                 </div>
             </div>
         `;
