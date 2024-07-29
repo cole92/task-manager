@@ -1,4 +1,4 @@
-import { addTask, deleteTask, updateTask } from './storage.js';
+import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
 import { displayTasks } from './ui.js';
 import Task from './task.js';
 
@@ -11,10 +11,24 @@ document.getElementById('task-form').addEventListener('submit', (e) => {
     document.getElementById('task-form').reset();
 });
 
+// Event listener za brisanje i oznacavanje zadataka kao zavrsenih i njihovu reaktivaciju
 document.getElementById('task-list').addEventListener('click', (e) => {
-    if (e.target.classList.contains('delete-btn')) {
-        const taskId = e.target.parentElement.dataset.id;
+    const taskCard = e.target.closest('.task-card');
+    if (!taskCard) return;
+    const taskId = taskCard.dataset.id;
+
+    if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
         deleteTask(taskId);
+        displayTasks();
+    } else if (e.target.classList.contains('complete-btn') || e.target.closest('.complete-btn')) {
+        let tasks = getTasks();
+        tasks = tasks.map(task => {
+            if (task.id === taskId) {
+                task.completed = !task.completed;
+            }
+            return task;
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         displayTasks();
     }
 });
