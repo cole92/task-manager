@@ -24,12 +24,12 @@ document.getElementById('task-list').addEventListener('click', (e) => {
         const taskId = e.target.closest('.task-card').dataset.id;
         let tasks = getTasks();
         tasks = tasks.map(task => {
-            if (taskId === taskId) {
+            if (task.id === taskId) {
                 task.completed = !task.completed;
             }
             return task;
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        displayTasks()
+        displayTasks();
     }
-})
+});
