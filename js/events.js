@@ -10,18 +10,17 @@ document.getElementById('task-form').addEventListener('submit', (e) => {
     displayTasks();
     document.getElementById('task-form').reset();
 });
-// Listener za delete-btn
+
+// Event listener za brisanje i oznacavanje zadataka kao zavrsenih i njihovu reaktivaciju
 document.getElementById('task-list').addEventListener('click', (e) => {
+    const taskCard = e.target.closest('.task-card');
+    if (!taskCard) return;
+    const taskId = taskCard.dataset.id;
+
     if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
-        const taskId = e.target.closest('.task-card').dataset.id;
         deleteTask(taskId);
         displayTasks();
-    }
-});
-// Listener za complete-btn
-document.getElementById('task-list').addEventListener('click', (e) => {
-    if (e.target.classList.contains('complete-btn') || e.target.closest('.complete-btn')) {
-        const taskId = e.target.closest('.task-card').dataset.id;
+    } else if (e.target.classList.contains('complete-btn') || e.target.closest('.complete-btn')) {
         let tasks = getTasks();
         tasks = tasks.map(task => {
             if (task.id === taskId) {

@@ -25,6 +25,11 @@ export const displayTasks = () => {
         `;
         
         colDiv.appendChild(cardDiv);
-        taskList.appendChild(colDiv);
+        // Dodajemo kartice na pocetak umesto na kraj liste
+        if (taskList.firstChild) {
+            taskList.insertBefore(colDiv, taskList.firstChild);
+        } else {
+            taskList.appendChild(colDiv);
+        }
     });
 };
