@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1>Task Manager</h1>
-        <!--Forma sa inputom i dugmetom za dodavanje zadatatka-->
+        <!--Forma sa inputom i dugmetom za dodavanje zadatka-->
         <form id="task-form" class="d-flex mb-3">
             <input type="text" id="task-input" class="form-control me-2" placeholder="Enter new task" required>
             <button type="submit" class="btn btn-dark"><i class="fas fa-plus"></i> Add Task</button>
@@ -21,7 +21,7 @@
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div class="filter-buttons">
                 <div class="dropdown">
-                    <button class="btn btn-secondary filter-btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-secondary filter-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter Tasks
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -44,9 +44,56 @@
                 </div>
             </div>
         </div>
-         <!-- Skrolabilni deo -->
-         <div class="scrollable-content">
+        <!-- Skrolabilni deo -->
+        <div class="scrollable-content">
             <div id="task-list" class="row"></div>
+        </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="taskModalLabel">Task Name</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-task-form">
+                        <input type="hidden" id="edit-task-id">
+                        <div class="mb-3">
+                            <label for="edit-task-desc" class="form-label">Description</label>
+                            <textarea class="form-control" id="edit-task-desc" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <fieldset>
+                                <legend class="form-label" id="prior">Priority</legend>
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="None">
+                                    <label class="btn btn-outline-secondary" for="btnradio1">No Priority</label>
+
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="Low">
+                                    <label class="btn btn-outline-success" for="btnradio2">Low</label>
+
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="Medium">
+                                    <label class="btn btn-outline-warning" for="btnradio3">Medium</label>
+
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="High">
+                                    <label class="btn btn-outline-danger" for="btnradio4">High</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeBtn">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveBtn">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
