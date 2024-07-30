@@ -213,3 +213,97 @@ input::placeholder {
 .scrollable-content::-webkit-scrollbar {
     display: none; /* Sakriva skrol bar u Chrome, Safari i Opera */
 }
+
+/* Modalni prozor */
+.modal-content {
+    border-radius: 10px;
+  }
+
+ /* Stilizacija dugmadi za prioritete */
+.modal .btn-check:checked + .btn-outline-secondary,
+.modal .btn-check:checked + .btn-outline-success,
+.modal .btn-check:checked + .btn-outline-warning,
+.modal .btn-check:checked + .btn-outline-danger {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.modal .btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.modal .btn-group .btn {
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    color: rgb(80, 80, 80);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.modal .btn-outline-secondary, .btn-outline-danger{
+    border-radius: 20px;
+}
+
+.modal .btn-group .btn:hover {
+    transform: scale(1.05);
+}
+
+/* Promena boje teksta pri prelasku i fokusu */
+.modal .btn-group .btn-outline-secondary:hover,
+.modal .btn-group .btn-outline-secondary:focus {
+    color: #007bff;
+    border-color: #ccc;
+}
+.modal .btn-group .btn-outline-success:hover,
+.modal .btn-group .btn-outline-success:focus {
+    color: #28a745;
+    border-color: #ccc;
+}
+.modal .btn-group .btn-outline-warning:hover,
+.modal .btn-group .btn-outline-warning:focus {
+    color: #ffc107;
+    border-color: #ccc;
+}
+.modal .btn-group .btn-outline-danger:hover,
+.modal .btn-group .btn-outline-danger:focus {
+    color: #dc3545;
+    border-color: #ccc;
+}
+
+.modal .btn-check:checked + .btn-outline-secondary {
+    color: #007bff;
+}
+.modal .btn-check:checked + .btn-outline-success {
+    color: #28a745;
+}
+.modal .btn-check:checked + .btn-outline-warning {
+    color: #ffc107;
+}
+.modal .btn-check:checked + .btn-outline-danger {
+    color: #dc3545;
+}
+
+/* Stilizacija labele za prioritet */
+#prior {
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Dugmici na modalu */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+}
+.modal-footer .btn {
+    flex: 1;
+    margin: 0 10px;
+}
+.modal-footer .btn-secondary {
+    margin-left: 0;
+}
+.modal-footer .btn-primary {
+    margin-right: 0;
+}
