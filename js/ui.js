@@ -1,5 +1,6 @@
 import { getTasks } from "./storage.js";
 
+// Funkcija za prikazaivanje zadataka i kreiranje html strukture
 export const displayTasks = () => {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
@@ -32,4 +33,21 @@ export const displayTasks = () => {
             taskList.appendChild(colDiv);
         }
     });
+};
+
+// Funkcija za otvaranje modalnog prozora 
+export const openModal = (taskId) => {
+    const tasks = getTasks();
+    const task = tasks.find(task => task.id === taskId);
+
+    if (task) {
+        document.getElementById('edit-task-id').value = task.id;
+        document.getElementById('taskModalLabel').textContent = task.name;
+        document.getElementById('edit-task-desc').value = task.description;
+        document.querySelector(`input[name="btnradio"][value="${task.priority}"]`).checked = true;
+
+        // Prikazivanje modala
+        const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+        modal.show();
+    }
 };
