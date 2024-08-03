@@ -307,3 +307,10 @@ input::placeholder {
 .modal-footer .btn-primary {
     margin-right: 0;
 }
+/* Input za ime zadatka na modalu */
+#taskModalLabel {
+    border: none;
+    font-size: 2rem;
+    margin-left: -15px;
+    cursor: text;
+}

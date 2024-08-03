@@ -1,7 +1,8 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
-import { displayTasks } from './ui.js';
+import { displayTasks, openModal } from './ui.js';
 import Task from './task.js';
 
+// Event listener za dodavanje novih zadataka
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
@@ -17,6 +18,7 @@ document.getElementById('task-list').addEventListener('click', (e) => {
     if (!taskCard) return;
     const taskId = taskCard.dataset.id;
 
+    // Provera koja akcija je pokrenuta
     if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
         deleteTask(taskId);
         displayTasks();
@@ -30,5 +32,8 @@ document.getElementById('task-list').addEventListener('click', (e) => {
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         displayTasks();
+    } else if (taskCard && !taskCard.classList.contains('completed')) {
+        // Ako je zadatak aktivan, otvori modal
+        openModal(taskId);
     }
 });
