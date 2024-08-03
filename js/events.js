@@ -37,3 +37,33 @@ document.getElementById('task-list').addEventListener('click', (e) => {
         openModal(taskId);
     }
 });
+
+// Event za prikupljanje i snimanje podataka iz modalnog prozora
+document.getElementById('saveBtn').addEventListener('click', () => {
+    const taskId = document.getElementById('edit-task-id').value;
+    const taskName = document.getElementById('taskModalLabel').value;
+    const taskDescription = document.getElementById('edit-task-desc').value;
+    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value
+    console.log(taskName, taskDescription, taskPriority, taskId);
+
+    if (taskName === '') {
+        alert ('Input polje je prazno!') // Ovde bi mogli vremenom uraditi neki lep prikaz korisniku za sada je samo Alert radi funkcionalnosti!
+        return;
+    };
+
+    const updatedTask = {
+        id: taskId,
+        name: taskName,
+        description: taskDescription,
+        date: new Date().toDateString(),
+        priority: taskPriority,
+        completed: false
+    };
+
+    updateTask(updatedTask);
+    displayTasks();
+
+    document.getElementById('edit-task-form').reset();
+    const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
+    modal.hide();
+});
