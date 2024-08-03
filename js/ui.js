@@ -12,11 +12,21 @@ export const displayTasks = () => {
 
         const cardDiv = document.createElement('div');
         cardDiv.className = `card task-card ${task.priority === 'High' ? 'priority-high' : task.priority === 'Medium' ? 'priority-medium' : 'priority-low'} ${task.completed ? 'completed' : ''}`;
-        cardDiv.dataset.id = task.id;
+        cardDiv.dataset.id = task.id; 
+
+        let taskDescription;
+            if (task.description === '') {
+                taskDescription = '...';
+            } else if (task.description.length > 25) {
+                taskDescription = task.description.slice(0, 25) + '...';
+            } else {
+                taskDescription = task.description;
+            }
+            
         cardDiv.innerHTML = `
             <div class="card-body">
                 <h5 class="card-title">${task.name}</h5>
-                <p class="card-text">${task.description.slice(0, 30)}...</p>
+                <p class="card-text">${taskDescription}</p>
                 <p class="card-text"><small class="text-muted">Created on: ${task.date}</small></p>
                 <div class="btn-group">
                     <button class="checkButtons btn btn-success btn-sm complete-btn">${task.completed ? 'REACTIVATE' : '<i class="fas fa-check"></i>'}</button>
