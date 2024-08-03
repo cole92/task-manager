@@ -18,6 +18,7 @@ document.getElementById('task-list').addEventListener('click', (e) => {
     if (!taskCard) return;
     const taskId = taskCard.dataset.id;
 
+    // Provera koja akcija je pokrenuta
     if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
         deleteTask(taskId);
         displayTasks();
@@ -31,14 +32,8 @@ document.getElementById('task-list').addEventListener('click', (e) => {
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         displayTasks();
+    } else if (taskCard && !taskCard.classList.contains('completed')) {
+        // Ako je zadatak aktivan, otvori modal
+        openModal(taskId);
     }
 });
-
-// Event listener za otvaranje modala klikom na karticu zadatka
-document.getElementById('task-list').addEventListener('click', (e) =>{
-    const taskCard = e.target.closest('.task-card');
-    if (!taskCard) return;
-    const taskId = taskCard.dataset.id;
-    
-    openModal(taskId);
-})
