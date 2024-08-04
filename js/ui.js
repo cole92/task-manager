@@ -4,11 +4,16 @@ import { getTasks } from "./storage.js";
 const createTaskCard = (task) => {
     const colDiv = document.createElement('div');
     colDiv.className = 'col-12 col-md-6 col-lg-4';
-
+// Logika za odredjivanje prioriteta
     const cardDiv = document.createElement('div');
-    cardDiv.className = `card task-card ${task.priority === 'High' ? 'priority-high' : task.priority === 'Medium' ? 'priority-medium' : 'priority-low'} ${task.completed ? 'completed' : ''}`;
-    cardDiv.dataset.id = task.id;
-
+        cardDiv.className = `card task-card 
+            ${task.priority === 'High' ? 'priority-high' : 
+            task.priority === 'Medium' ? 'priority-medium' : 
+            task.priority === 'Low' ? 'priority-low' : 
+            'no-priority'} 
+            ${task.completed ? 'completed' : ''}`;
+        cardDiv.dataset.id = task.id;
+        
     // Logika za duzinu i prikaz task description na karticama
     const taskDescription = task.description === ''
         ? '...'
@@ -61,6 +66,7 @@ export const openModal = (taskId) => {
     const task = tasks.find(task => task.id === taskId);
     
     if (task) {
+        
         document.getElementById('edit-task-id').value = task.id;
         document.getElementById('taskModalLabel').value = task.name;
         document.getElementById('edit-task-desc').value = task.description;

@@ -6,7 +6,7 @@ import Task from './task.js';
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
-    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'Low');
+    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'No Priority');
     addTask(newTask);
     displayTasks();
     document.getElementById('task-form').reset();
