@@ -59,6 +59,9 @@ document.getElementById('saveBtn').addEventListener('click', () => {
         priority: taskPriority,
         completed: false
     };
+    
+    //Dodajem nov datum izmene zadatka
+    updatedTask.updatedDate = new Date().toLocaleDateString();
 
     updateTask(updatedTask);
     displayTasks();
