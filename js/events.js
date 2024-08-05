@@ -6,7 +6,7 @@ import Task from './task.js';
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
-    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'Low');
+    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'No Priority');
     addTask(newTask);
     displayTasks();
     document.getElementById('task-form').reset();
@@ -36,4 +36,37 @@ document.getElementById('task-list').addEventListener('click', (e) => {
         // Ako je zadatak aktivan, otvori modal
         openModal(taskId);
     }
+});
+
+// Event za prikupljanje i snimanje podataka iz modalnog prozora
+document.getElementById('saveBtn').addEventListener('click', () => {
+    const taskId = document.getElementById('edit-task-id').value;
+    const taskName = document.getElementById('taskModalLabel').value;
+    const taskDescription = document.getElementById('edit-task-desc').value;
+    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value
+    console.log(taskName, taskDescription, taskPriority, taskId);
+
+    if (taskName === '') {
+        alert ('Input polje je prazno!') // Ovde bi mogli vremenom uraditi neki lep prikaz korisniku za sada je samo Alert radi funkcionalnosti!
+        return;
+    };
+
+    const updatedTask = {
+        id: taskId,
+        name: taskName,
+        description: taskDescription,
+        date: new Date().toDateString(),
+        priority: taskPriority,
+        completed: false
+    };
+    
+    //Dodajem nov datum izmene zadatka
+    updatedTask.updatedDate = new Date().toLocaleDateString();
+
+    updateTask(updatedTask);
+    displayTasks();
+
+    document.getElementById('edit-task-form').reset();
+    const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
+    modal.hide();
 });
