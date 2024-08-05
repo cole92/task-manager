@@ -126,6 +126,7 @@ input::placeholder {
 /* Stilovi za kartice i grid sistem za prikaz zadataka */
 .task-card {
     position: relative;
+    margin: 10px;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -181,15 +182,47 @@ input::placeholder {
 }
 
 /* Stilovi za prioritete */
-.task-card .priority-high {
-    border-left: 4px solid red;
+.priority-high {
+    border: 1px solid darkred;
+    /*border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(139, 0, 0, 0.2);
+    background: linear-gradient(to right, rgba(139, 0, 0, 0.2), transparent);
+    transition: transform 0.2s, box-shadow 0.2s;*/   
 }
-.task-card .priority-medium {
-    border-left: 4px solid orange;
+.priority-medium {
+    border: 1px solid darkorange;
+    /*border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(255, 140, 0, 0.2); 
+    background: linear-gradient(to right, rgba(255, 140, 0, 0.2), transparent);
+    transition: transform 0.2s, box-shadow 0.2s;*/
+    
 }
-.task-card .priority-low {
-    border-left: 4px solid green;
+.priority-low {
+    border: 1px solid darkgreen;
+    /*border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(34, 139, 34, 0.2);
+    background: linear-gradient(to right, rgba(34, 139, 34, 0.2), transparent);
+    transition: transform 0.2s, box-shadow 0.2s;*/
+    
 }
+.no-priority {
+    border: 1px solid #cccccc;
+    /*border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(128, 128, 128, 0.2);
+    background: linear-gradient(to right, rgba(192, 192, 192, 0.2), transparent);
+    transition: transform 0.2s, box-shadow 0.2s;*/
+    
+}
+/* Hover efekat za sve prioritete */
+
+/*.priority-high:hover,
+.priority-medium:hover,
+.priority-low:hover,
+.no-priority:hover {
+    transform: scale(1.02); 
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
+}*/
+
 /* Ogranicavanje visine naslova */
 .card-title {
     white-space: nowrap;

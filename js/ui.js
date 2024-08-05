@@ -17,8 +17,8 @@ const createTaskCard = (task) => {
     // Logika za duzinu i prikaz task description na karticama
     const taskDescription = task.description === ''
         ? '...'
-        : task.description.length > 25
-        ? task.description.slice(0, 25) + '...'
+        : task.description.length > 20
+        ? task.description.slice(0, 20) + '...'
         : task.description;
 
     // Logika izmedju created i updated task
@@ -71,8 +71,16 @@ export const openModal = (taskId) => {
         document.getElementById('taskModalLabel').value = task.name;
         document.getElementById('edit-task-desc').value = task.description;
 
-    // No priority po defaultu
-    document.getElementById('btnradio1').checked = true;
+        // Logika za postavljanje defaultnog prioriteta
+        const priority = task.priority;
+        const priorityRadioButton = document.querySelector(`input[name="btnradio"][value="${priority}"]`);
+        
+        if (priorityRadioButton) {
+            priorityRadioButton.checked = true;
+        } else {
+            document.querySelector('input[name="btnradio"][value="No Priority"]').checked = true;
+        };
+        
 
     // Prikazivanje modala
     const modal = new bootstrap.Modal(document.getElementById('taskModal'));
