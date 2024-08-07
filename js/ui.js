@@ -44,11 +44,10 @@ const createTaskCard = (task) => {
 };
 
 // Funkcija za prikazivanje zadataka
-export const displayTasks = () => {
+export const displayTasks = (tasks = getTasks()) => {
     const taskList = document.getElementById('task-list');
     taskList.innerHTML = '';
 
-    const tasks = getTasks();
     tasks.forEach(task => {
         const taskCard = createTaskCard(task);
         // Dodajemo kartice na pocetak umesto na kraj liste

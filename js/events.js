@@ -70,3 +70,24 @@ document.getElementById('saveBtn').addEventListener('click', () => {
     const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
     modal.hide();
 });
+// Filtriranje zadataka 
+const filterDropdown = document.querySelector('.dropdown-menu');
+
+const filterTasks = (tasks, filterType) => {
+    if (filterType === 'filter-completed') {
+        return tasks.filter(task => task.completed);
+    } else if (filterType === 'filter-pending') {
+        return tasks.filter(task => !task.completed);
+    } else {
+        return tasks;
+    }
+};
+
+filterDropdown.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dropdown-item')) {
+        const selectedFilter = e.target.id;
+        let tasks = getTasks();
+        const filteredTasks = filterTasks(tasks, selectedFilter);
+        displayTasks(filteredTasks);
+    }
+});
