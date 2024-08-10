@@ -37,9 +37,16 @@
                     <button class="btn btn-secondary sort-btn dropdown-toggle" type="button" id="dropdownSortButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort Tasks
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownSortButton">
-                        <li><a class="dropdown-item" href="#" id="sort-date">Date</a></li>
-                        <li><a class="dropdown-item" href="#" id="sort-priority">Priority</a></li>
+                    <ul class="dropdown-menu" id="sortic" aria-labelledby="dropdownSortButton">
+                        <!--Sekicja za sortiranje po datumu-->
+                        <li class="dropdown-header">Date</li>
+                        <li><a class="dropdown-item" href="#" id="sort-newest">Newest</a></li>
+                        <li><a class="dropdown-item" href="#" id="sort-oldest">Oldest</a></li>
+                        <!-- Sekcija za sortiranje po prioritetu -->
+                        <li class="dropdown-header">Priority</li>
+                        <li><a class="dropdown-item" href="#" id="sort-highest">Highest</a></li>
+                        <li><a class="dropdown-item" href="#" id="sort-medium">Medium</a></li>
+                        <li><a class="dropdown-item" href="#" id="sort-lowest">Lowest</a></li>
                     </ul>
                 </div>
             </div>

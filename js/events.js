@@ -91,3 +91,33 @@ filterDropdown.addEventListener('click', (e) => {
         displayTasks(filteredTasks);
     }
 });
+// Sortiranje zadataka
+const sortDropdown = document.querySelector('#sortic');
+
+sortDropdown.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dropdown-item')) {
+        const selectedSort = e.target.id;
+        let tasks = getTasks();
+        const sortedTasks = sortTasks(tasks, selectedSort);
+        displayTasks(sortedTasks);
+    }
+});
+const sortTasks = (tasks, sortType) => {
+    if (sortType === 'sort-newest') {
+        return tasks.sort((a, b) => new Date(b.date) - new Date(a.date));
+    } else if (sortType === 'sort-oldest') {
+        return tasks.sort((a, b) => new Date(a.date) - new Date(b.date));
+    } else if (sortType === 'sort-highest') {
+        return tasks.sort((a, b) => priorityValue(b.priority) - priorityValue(a.priority));
+    } else if (sortType === 'sort-lowest') {
+        return tasks.sort((a, b) => priorityValue(a.priority) - priorityValue(b.priority));
+    } else {
+        return tasks; // Defaultni sort
+    }
+};
+const priorityValue = (priority) => {
+    if (priority === 'High') return 3;
+    if (priority === 'Medium') return 2;
+    if (priority === 'Low') return 1;
+    return 0; // No priority
+};
