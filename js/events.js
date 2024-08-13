@@ -1,5 +1,6 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
 import { displayTasks, openModal } from './ui.js';
+import { filterTasks, sortTasks } from './taskUtils.js';
 import Task from './task.js';
 
 // Event listener za dodavanje novih zadataka
@@ -31,7 +32,11 @@ document.getElementById('task-list').addEventListener('click', (e) => {
             return task;
         });
         localStorage.setItem('tasks', JSON.stringify(tasks));
-        displayTasks();
+
+        // Automatsko sortiranje nakon oznacavanja zadatka kao zavrsenog
+        const sortedTasks = sortTasks(tasks, 'sort-default');
+        displayTasks(sortedTasks);
+
     } else if (taskCard && !taskCard.classList.contains('completed')) {
         // Ako je zadatak aktivan, otvori modal
         openModal(taskId);
@@ -70,24 +75,25 @@ document.getElementById('saveBtn').addEventListener('click', () => {
     const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
     modal.hide();
 });
-// Filtriranje zadataka 
+
+// Filtriranje zadataka
 const filterDropdown = document.querySelector('.dropdown-menu');
-
-const filterTasks = (tasks, filterType) => {
-    if (filterType === 'filter-completed') {
-        return tasks.filter(task => task.completed);
-    } else if (filterType === 'filter-pending') {
-        return tasks.filter(task => !task.completed);
-    } else {
-        return tasks;
-    }
-};
-
 filterDropdown.addEventListener('click', (e) => {
     if (e.target.classList.contains('dropdown-item')) {
         const selectedFilter = e.target.id;
         let tasks = getTasks();
         const filteredTasks = filterTasks(tasks, selectedFilter);
         displayTasks(filteredTasks);
+    }
+});
+
+// Sortiranje zadataka
+const sortDropdown = document.querySelector('#sortList');
+sortDropdown.addEventListener('click', (e) => {
+    if (e.target.classList.contains('dropdown-item')) {
+        const selectedSort = e.target.id;
+        let tasks = getTasks();
+        const sortedTasks = sortTasks(tasks, selectedSort);
+        displayTasks(sortedTasks);
     }
 });
