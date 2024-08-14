@@ -7,7 +7,7 @@ import Task from './task.js';
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
-    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'No Priority');
+    const newTask = new Task(taskName, '', new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' }), 'No Priority');
     addTask(newTask);
     displayTasks();
     document.getElementById('task-form').reset();
@@ -66,7 +66,7 @@ document.getElementById('saveBtn').addEventListener('click', () => {
     };
     
     //Dodajem nov datum izmene zadatka
-    updatedTask.updatedDate = new Date().toLocaleDateString();
+    updatedTask.updatedDate = new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
     updateTask(updatedTask);
     displayTasks();
@@ -76,14 +76,23 @@ document.getElementById('saveBtn').addEventListener('click', () => {
     modal.hide();
 });
 
+const applyFilterAndSort = (tasks, filterType, sortType) => {
+    let filteredTasks = filterTasks(tasks, filterType);
+    let sortedTasks = sortTasks(filteredTasks, sortType);
+    return sortedTasks;
+};
+
+let currentFilter = 'filter-all';
+let currentSort = 'sort-default';
+
 // Filtriranje zadataka
 const filterDropdown = document.querySelector('.dropdown-menu');
 filterDropdown.addEventListener('click', (e) => {
     if (e.target.classList.contains('dropdown-item')) {
-        const selectedFilter = e.target.id;
+        currentFilter = e.target.id;
         let tasks = getTasks();
-        const filteredTasks = filterTasks(tasks, selectedFilter);
-        displayTasks(filteredTasks);
+        let filteredAndSortedTasks = applyFilterAndSort(tasks, currentFilter, currentSort);
+        displayTasks(filteredAndSortedTasks);
     }
 });
 
@@ -91,9 +100,9 @@ filterDropdown.addEventListener('click', (e) => {
 const sortDropdown = document.querySelector('#sortList');
 sortDropdown.addEventListener('click', (e) => {
     if (e.target.classList.contains('dropdown-item')) {
-        const selectedSort = e.target.id;
+        currentSort = e.target.id;
         let tasks = getTasks();
-        const sortedTasks = sortTasks(tasks, selectedSort);
-        displayTasks(sortedTasks);
+        let filteredAndSortedTasks = applyFilterAndSort(tasks, currentFilter, currentSort);
+        displayTasks(filteredAndSortedTasks);
     }
 });
