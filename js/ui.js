@@ -59,18 +59,31 @@ export const displayTasks = (tasks = getTasks()) => {
     });
 };
 
-// Funkcija za otvaranje modalnog prozora 
+// Funkcija za otvaranje modalnog prozora sa unetim imenom zadatka
+export const openModalForNewTask = (taskName) => {
+    document.getElementById('taskModalLabel').value = taskName;
+    document.getElementById('edit-task-id').value = ''; 
+    document.getElementById('edit-task-desc').value = ''; 
+    document.querySelector('input[name="btnradio"][value="No Priority"]').checked = true; 
+
+    const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+    modal.show();
+    // Fokusiranje na input za naziv zadatka
+    setTimeout(() => {
+        document.getElementById('taskModalLabel').focus();
+    }, 500);
+};
+
+// Funkcija za otvaranje modalnog prozora sa zadatkom
 export const openModal = (taskId) => {
     const tasks = getTasks();
     const task = tasks.find(task => task.id === taskId);
     
     if (task) {
-        
         document.getElementById('edit-task-id').value = task.id;
         document.getElementById('taskModalLabel').value = task.name;
         document.getElementById('edit-task-desc').value = task.description;
 
-        // Logika za postavljanje defaultnog prioriteta
         const priority = task.priority;
         const priorityRadioButton = document.querySelector(`input[name="btnradio"][value="${priority}"]`);
         
@@ -79,15 +92,12 @@ export const openModal = (taskId) => {
         } else {
             document.querySelector('input[name="btnradio"][value="No Priority"]').checked = true;
         };
-        
 
-    // Prikazivanje modala
-    const modal = new bootstrap.Modal(document.getElementById('taskModal'));
-    modal.show();
+        const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+        modal.show();
 
-    // Cekamo da se modal ucita i fokusiramo na input polje ( da korisnik zna da moze menjati naslov :) )
-    setTimeout(() => {
-        document.getElementById('taskModalLabel').focus();
-    }, 500);
+        setTimeout(() => {
+            document.getElementById('taskModalLabel').focus();
+        }, 500);
     }
 };

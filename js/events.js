@@ -1,15 +1,13 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
-import { displayTasks, openModal } from './ui.js';
+import { displayTasks, openModalForNewTask, openModal } from './ui.js';
 import { filterTasks, sortTasks } from './taskUtils.js';
 import Task from './task.js';
 
-// Event listener za dodavanje novih zadataka
+// Event listener za otvaranje modala
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
-    const newTask = new Task(taskName, '', new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' }), 'No Priority');
-    addTask(newTask);
-    displayTasks();
+    openModalForNewTask(taskName); // Otvara modal sa unetim imenom
     document.getElementById('task-form').reset();
 });
 
@@ -43,39 +41,44 @@ document.getElementById('task-list').addEventListener('click', (e) => {
     }
 });
 
-// Event za prikupljanje i snimanje podataka iz modalnog prozora
+// Event listener za prikupljanje i snimanje podataka iz modalnog prozora
 document.getElementById('saveBtn').addEventListener('click', () => {
     const taskId = document.getElementById('edit-task-id').value;
     const taskName = document.getElementById('taskModalLabel').value;
     const taskDescription = document.getElementById('edit-task-desc').value;
-    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value
-    console.log(taskName, taskDescription, taskPriority, taskId);
+    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value;
 
     if (taskName === '') {
-        alert ('Input polje je prazno!') // Ovde bi mogli vremenom uraditi neki lep prikaz korisniku za sada je samo Alert radi funkcionalnosti!
+        alert ('Input polje je prazno!'); // Ovde dodati toast!
         return;
     };
-
-    const updatedTask = {
-        id: taskId,
-        name: taskName,
-        description: taskDescription,
-        date: new Date().toDateString(),
-        priority: taskPriority,
-        completed: false
-    };
     
-    //Dodajem nov datum izmene zadatka
-    updatedTask.updatedDate = new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    if (taskId) {
+        // Azuriranje postojeceg zadatka
+        const updatedTask = {
+            id: taskId,
+            name: taskName,
+            description: taskDescription,
+            date: new Date().toDateString(),
+            priority: taskPriority,
+            completed: false
+        };
 
-    updateTask(updatedTask);
+        updatedTask.updatedDate = new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        updateTask(updatedTask);
+            } else {
+                // Kreiranje novog zadatka
+                const newTask = new Task(taskName, taskDescription,
+                new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' }), taskPriority);
+                addTask(newTask);
+            }
+
     displayTasks();
-
     document.getElementById('edit-task-form').reset();
     const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
     modal.hide();
 });
-
+// Izdvojena logika za filtriranje i sortiranje
 const applyFilterAndSort = (tasks, filterType, sortType) => {
     let filteredTasks = filterTasks(tasks, filterType);
     let sortedTasks = sortTasks(filteredTasks, sortType);
