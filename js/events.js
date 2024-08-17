@@ -59,19 +59,22 @@ document.getElementById('saveBtn').addEventListener('click', () => {
             id: taskId,
             name: taskName,
             description: taskDescription,
-            date: new Date().toDateString(),
+            date: new Date(),
             priority: taskPriority,
             completed: false
         };
-
-        updatedTask.updatedDate = new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+        updatedTask.updatedDate = new Date();
         updateTask(updatedTask);
-            } else {
-                // Kreiranje novog zadatka
-                const newTask = new Task(taskName, taskDescription,
-                new Date().toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' }), taskPriority);
-                addTask(newTask);
-            }
+    } else {
+        // Kreiranje novog zadatka
+        const newTask = new Task(
+            taskName,
+            taskDescription,
+            new Date(),
+            taskPriority
+        );
+        addTask(newTask);
+    }
 
     displayTasks();
     document.getElementById('edit-task-form').reset();

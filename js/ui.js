@@ -1,4 +1,5 @@
 import { getTasks } from "./storage.js";
+import { formatDateForDisplay } from "./taskUtils.js";
 
 // Funkcija za kreiranje HTML strukture za karticu zadatka
 const createTaskCard = (task) => {
@@ -23,8 +24,8 @@ const createTaskCard = (task) => {
 
     // Logika izmedju created i updated task
     const dateText = task.updatedDate 
-        ? `Changed on: ${task.updatedDate}` 
-        : `Created on: ${task.date}`;        
+        ? `Changed on: ${formatDateForDisplay(new Date(task.updatedDate))}` 
+        : `Created on: ${formatDateForDisplay(new Date(task.date))}`;      
 
     // Kreiranje HTML-a za karticu
     cardDiv.innerHTML = `

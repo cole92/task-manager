@@ -43,3 +43,8 @@ const priorityValue = (priority) => {
     if (priority === 'Low') return 1;
     return 0; // No priority
 };
+
+// Funkcija za formatiranje datuma
+export const formatDateForDisplay = (date) => {
+    return date.toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+};
