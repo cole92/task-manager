@@ -1,15 +1,13 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
-import { displayTasks, openModal } from './ui.js';
+import { displayTasks, openModalForNewTask, openModal } from './ui.js';
 import { filterTasks, sortTasks } from './taskUtils.js';
 import Task from './task.js';
 
-// Event listener za dodavanje novih zadataka
+// Event listener za otvaranje modala
 document.getElementById('task-form').addEventListener('submit', (e) => {
     e.preventDefault();
     const taskName = document.getElementById('task-input').value;
-    const newTask = new Task(taskName, '', new Date().toLocaleDateString(), 'No Priority');
-    addTask(newTask);
-    displayTasks();
+    openModalForNewTask(taskName); // Otvara modal sa unetim imenom
     document.getElementById('task-form').reset();
 });
 
@@ -43,47 +41,64 @@ document.getElementById('task-list').addEventListener('click', (e) => {
     }
 });
 
-// Event za prikupljanje i snimanje podataka iz modalnog prozora
+// Event listener za prikupljanje i snimanje podataka iz modalnog prozora
 document.getElementById('saveBtn').addEventListener('click', () => {
     const taskId = document.getElementById('edit-task-id').value;
     const taskName = document.getElementById('taskModalLabel').value;
     const taskDescription = document.getElementById('edit-task-desc').value;
-    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value
-    console.log(taskName, taskDescription, taskPriority, taskId);
+    const taskPriority = document.querySelector('input[name="btnradio"]:checked').value;
 
     if (taskName === '') {
-        alert ('Input polje je prazno!') // Ovde bi mogli vremenom uraditi neki lep prikaz korisniku za sada je samo Alert radi funkcionalnosti!
+        alert ('Input polje je prazno!'); // Ovde dodati toast!
         return;
     };
-
-    const updatedTask = {
-        id: taskId,
-        name: taskName,
-        description: taskDescription,
-        date: new Date().toDateString(),
-        priority: taskPriority,
-        completed: false
-    };
     
-    //Dodajem nov datum izmene zadatka
-    updatedTask.updatedDate = new Date().toLocaleDateString();
+    if (taskId) {
+        // Azuriranje postojeceg zadatka
+        const updatedTask = {
+            id: taskId,
+            name: taskName,
+            description: taskDescription,
+            date: new Date(),
+            priority: taskPriority,
+            completed: false
+        };
+        updatedTask.updatedDate = new Date();
+        updateTask(updatedTask);
+    } else {
+        // Kreiranje novog zadatka
+        const newTask = new Task(
+            taskName,
+            taskDescription,
+            new Date(),
+            taskPriority
+        );
+        addTask(newTask);
+    }
 
-    updateTask(updatedTask);
     displayTasks();
-
     document.getElementById('edit-task-form').reset();
     const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
     modal.hide();
 });
+// Izdvojena logika za filtriranje i sortiranje
+const applyFilterAndSort = (tasks, filterType, sortType) => {
+    let filteredTasks = filterTasks(tasks, filterType);
+    let sortedTasks = sortTasks(filteredTasks, sortType);
+    return sortedTasks;
+};
+
+let currentFilter = 'filter-all';
+let currentSort = 'sort-default';
 
 // Filtriranje zadataka
 const filterDropdown = document.querySelector('.dropdown-menu');
 filterDropdown.addEventListener('click', (e) => {
     if (e.target.classList.contains('dropdown-item')) {
-        const selectedFilter = e.target.id;
+        currentFilter = e.target.id;
         let tasks = getTasks();
-        const filteredTasks = filterTasks(tasks, selectedFilter);
-        displayTasks(filteredTasks);
+        let filteredAndSortedTasks = applyFilterAndSort(tasks, currentFilter, currentSort);
+        displayTasks(filteredAndSortedTasks);
     }
 });
 
@@ -91,9 +106,9 @@ filterDropdown.addEventListener('click', (e) => {
 const sortDropdown = document.querySelector('#sortList');
 sortDropdown.addEventListener('click', (e) => {
     if (e.target.classList.contains('dropdown-item')) {
-        const selectedSort = e.target.id;
+        currentSort = e.target.id;
         let tasks = getTasks();
-        const sortedTasks = sortTasks(tasks, selectedSort);
-        displayTasks(sortedTasks);
+        let filteredAndSortedTasks = applyFilterAndSort(tasks, currentFilter, currentSort);
+        displayTasks(filteredAndSortedTasks);
     }
 });
