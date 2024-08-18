@@ -114,6 +114,13 @@ sortDropdown.addEventListener('click', (e) => {
 });
 // Search bar
 document.getElementById("search-input").addEventListener('input', (e) => {
-    let inputValue = document.getElementById("search-input").value;
+    let inputValue = document.getElementById("search-input").value.toLowerCase();
     
+    let filteredtask = filterTasks(getTasks(), currentFilter);
+    let searchedTasks = filteredtask.filter(task => {
+        return task.name.toLowerCase().includes(inputValue) || 
+               task.description.toLowerCase().includes(inputValue);
+    });
+
+    displayTasks(searchedTasks);
 });
