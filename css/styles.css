@@ -347,3 +347,16 @@ input::placeholder {
     margin-left: -15px;
     cursor: text;
 }
+
+/* Search bar i prikaz poruke o pretrazi */
+#no-results-message {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 20px;
+}
+#search-input {
+    /* OVDE SMO STALI!*/
+}

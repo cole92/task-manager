@@ -1,6 +1,6 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
 import { displayTasks, openModalForNewTask, openModal } from './ui.js';
-import { filterTasks, sortTasks } from './taskUtils.js';
+import { filterTasks, sortTasks, noResultsMessage } from './taskUtils.js';
 import Task from './task.js';
 
 // Event listener za otvaranje modala
@@ -121,6 +121,17 @@ document.getElementById("search-input").addEventListener('input', (e) => {
         return task.name.toLowerCase().includes(inputValue) || 
                task.description.toLowerCase().includes(inputValue);
     });
+    let taskCards = document.querySelectorAll('.task-card');
 
-    displayTasks(searchedTasks);
+    // Proverava koliko kartica je vidljivo
+    let visibleTasks = Array.from(taskCards).filter(card => {
+        return getComputedStyle(card).display !== 'none';
+    }).length;
+
+        if (searchedTasks.length === 0 && visibleTasks === 0) {
+            noResultsMessage();
+        } else {
+            document.getElementById('no-results-message').innerText = '';
+            displayTasks(searchedTasks);
+        }
 });

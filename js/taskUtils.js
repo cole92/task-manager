@@ -48,3 +48,8 @@ const priorityValue = (priority) => {
 export const formatDateForDisplay = (date) => {
     return date.toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
 };
+
+//Funckija za prikazivanje poruke korisniku
+export const noResultsMessage = () => {
+    document.getElementById('no-results-message').innerText = 'Nema zadataka koji odgovaraju pretrazi.'
+};
