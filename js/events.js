@@ -121,17 +121,12 @@ document.getElementById("search-input").addEventListener('input', (e) => {
         return task.name.toLowerCase().includes(inputValue) || 
                task.description.toLowerCase().includes(inputValue);
     });
-    let taskCards = document.querySelectorAll('.task-card');
-
-    // Proverava koliko kartica je vidljivo
-    let visibleTasks = Array.from(taskCards).filter(card => {
-        return getComputedStyle(card).display !== 'none';
-    }).length;
-
-        if (searchedTasks.length === 0 && visibleTasks === 0) {
-            noResultsMessage();
-        } else {
-            document.getElementById('no-results-message').innerText = '';
-            displayTasks(searchedTasks);
-        }
+    // Provera podudaranja i prikaza poruke 
+    if (searchedTasks.length === 0) {
+        document.getElementById('task-list').innerHTML = '';
+        noResultsMessage();
+    } else {
+        document.getElementById('no-results-message').innerText = '';
+        displayTasks(searchedTasks);
+    }
 });

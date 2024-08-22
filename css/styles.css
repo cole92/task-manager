@@ -357,6 +357,10 @@ input::placeholder {
     color: #555;
     margin-top: 20px;
 }
-#search-input {
-    /* OVDE SMO STALI!*/
+
+/* Higlight slova koja se podudaraju sa pretragom */
+.highlight {
+    color: #004a98;
+    font-weight: bold; 
+    padding: 1px 1px;
 }

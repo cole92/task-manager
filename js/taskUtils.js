@@ -53,3 +53,9 @@ export const formatDateForDisplay = (date) => {
 export const noResultsMessage = () => {
     document.getElementById('no-results-message').innerText = 'Nema zadataka koji odgovaraju pretrazi.'
 };
+// Funkcija za isticanje teksta
+export const highlightText = (originalText, searchTerm) => {
+    if (!searchTerm) return originalText;
+    const regex = new RegExp(searchTerm, 'gi');
+    return originalText.replace(regex, (match) => `<span class="highlight">${match}</span>`);
+};
