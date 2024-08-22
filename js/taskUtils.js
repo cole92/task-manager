@@ -47,6 +47,7 @@ const priorityValue = (priority) => {
 // Funkcija za formatiranje datuma
 export const formatDateForDisplay = (date) => {
     return date.toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
 };
 
 //Funckija za prikazivanje poruke korisniku
