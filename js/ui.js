@@ -1,9 +1,5 @@
 import { getTasks } from "./storage.js";
-
 import { formatDateForDisplay, highlightText } from "./taskUtils.js";
-
-import { formatDateForDisplay } from "./taskUtils.js";
-
 
 // Funkcija za kreiranje HTML strukture za karticu zadatka
 const createTaskCard = (task) => {
@@ -20,14 +16,7 @@ const createTaskCard = (task) => {
             ${task.completed ? 'completed' : ''}`;
         cardDiv.dataset.id = task.id;
 
-
         const inputValue = document.getElementById("search-input")?.value.toLowerCase() || '';
-
-    // Logika izmedju created i updated task
-    const dateText = task.updatedDate 
-        ? `Changed on: ${formatDateForDisplay(new Date(task.updatedDate))}` 
-        : `Created on: ${formatDateForDisplay(new Date(task.date))}`;      
-
 
         // Logika za duzinu i prikaz task description i higlight na karticama
         let shortDescription = task.description.length > 20 
