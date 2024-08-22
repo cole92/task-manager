@@ -347,3 +347,20 @@ input::placeholder {
     margin-left: -15px;
     cursor: text;
 }
+
+/* Search bar i prikaz poruke o pretrazi */
+#no-results-message {
+    display: flex;
+    justify-content: center;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 20px;
+}
+
+/* Higlight slova koja se podudaraju sa pretragom */
+.highlight {
+    color: #004a98;
+    font-weight: bold; 
+    padding: 1px 1px;
+}

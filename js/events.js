@@ -1,6 +1,6 @@
 import { addTask, deleteTask, updateTask, getTasks } from './storage.js';
 import { displayTasks, openModalForNewTask, openModal } from './ui.js';
-import { filterTasks, sortTasks } from './taskUtils.js';
+import { filterTasks, sortTasks, noResultsMessage } from './taskUtils.js';
 import Task from './task.js';
 
 // Event listener za otvaranje modala
@@ -110,5 +110,23 @@ sortDropdown.addEventListener('click', (e) => {
         let tasks = getTasks();
         let filteredAndSortedTasks = applyFilterAndSort(tasks, currentFilter, currentSort);
         displayTasks(filteredAndSortedTasks);
+    }
+});
+// Search bar
+document.getElementById("search-input").addEventListener('input', (e) => {
+    let inputValue = document.getElementById("search-input").value.toLowerCase();
+    
+    let filteredtask = filterTasks(getTasks(), currentFilter);
+    let searchedTasks = filteredtask.filter(task => {
+        return task.name.toLowerCase().includes(inputValue) || 
+               task.description.toLowerCase().includes(inputValue);
+    });
+    // Provera podudaranja i prikaza poruke 
+    if (searchedTasks.length === 0) {
+        document.getElementById('task-list').innerHTML = '';
+        noResultsMessage();
+    } else {
+        document.getElementById('no-results-message').innerText = '';
+        displayTasks(searchedTasks);
     }
 });

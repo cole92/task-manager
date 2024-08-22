@@ -47,4 +47,16 @@ const priorityValue = (priority) => {
 // Funkcija za formatiranje datuma
 export const formatDateForDisplay = (date) => {
     return date.toLocaleDateString('sr-RS', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+};
+
+//Funckija za prikazivanje poruke korisniku
+export const noResultsMessage = () => {
+    document.getElementById('no-results-message').innerText = 'Nema zadataka koji odgovaraju pretrazi.'
+};
+// Funkcija za isticanje teksta
+export const highlightText = (originalText, searchTerm) => {
+    if (!searchTerm) return originalText;
+    const regex = new RegExp(searchTerm, 'gi');
+    return originalText.replace(regex, (match) => `<span class="highlight">${match}</span>`);
 };

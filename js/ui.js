@@ -1,10 +1,15 @@
 import { getTasks } from "./storage.js";
+
+import { formatDateForDisplay, highlightText } from "./taskUtils.js";
+
 import { formatDateForDisplay } from "./taskUtils.js";
+
 
 // Funkcija za kreiranje HTML strukture za karticu zadatka
 const createTaskCard = (task) => {
     const colDiv = document.createElement('div');
     colDiv.className = 'col-12 col-md-6 col-lg-4';
+
 // Logika za odredjivanje prioriteta
     const cardDiv = document.createElement('div');
         cardDiv.className = `card task-card 
@@ -14,35 +19,42 @@ const createTaskCard = (task) => {
             'no-priority'} 
             ${task.completed ? 'completed' : ''}`;
         cardDiv.dataset.id = task.id;
-        
-    // Logika za duzinu i prikaz task description na karticama
-    const taskDescription = task.description === ''
-        ? '...'
-        : task.description.length > 20
-        ? task.description.slice(0, 20) + '...'
-        : task.description;
+
+
+        const inputValue = document.getElementById("search-input")?.value.toLowerCase() || '';
 
     // Logika izmedju created i updated task
     const dateText = task.updatedDate 
         ? `Changed on: ${formatDateForDisplay(new Date(task.updatedDate))}` 
         : `Created on: ${formatDateForDisplay(new Date(task.date))}`;      
 
-    // Kreiranje HTML-a za karticu
-    cardDiv.innerHTML = `
-        <div class="card-body">
-            <h5 class="card-title">${task.name}</h5>
-            <p class="card-text">${taskDescription}</p>
-            <p class="card-text"><small class="text-muted">${dateText}</small></p>
-            <div class="btn-group">
-                <button class="checkButtons btn btn-success btn-sm complete-btn">${task.completed ? 'REACTIVATE' : '<i class="fas fa-check"></i>'}</button>
-                <button class="checkButtons btn delete-btn"><i class="fas fa-trash delete-btn"></i></button>
-            </div>
-        </div>
-    `;
+
+        // Logika za duzinu i prikaz task description i higlight na karticama
+        let shortDescription = task.description.length > 20 
+            ? task.description.slice(0, 20) + '...' 
+            : task.description;
+        const taskDescription = highlightText(shortDescription, inputValue);
     
-    colDiv.appendChild(cardDiv);
-    return colDiv;
-};
+        const dateText = task.updatedDate 
+            ? `Changed on: ${formatDateForDisplay(new Date(task.updatedDate))}` 
+            : `Created on: ${formatDateForDisplay(new Date(task.date))}`;      
+        
+        // Kreiranje htmla
+        cardDiv.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">${highlightText(task.name, inputValue)}</h5>
+                <p class="card-text">${taskDescription}</p>
+                <p class="card-text"><small class="text-muted">${dateText}</small></p>
+                <div class="btn-group">
+                    <button class="checkButtons btn btn-success btn-sm complete-btn">${task.completed ? 'REACTIVATE' : '<i class="fas fa-check"></i>'}</button>
+                    <button class="checkButtons btn delete-btn"><i class="fas fa-trash delete-btn"></i></button>
+                </div>
+            </div>
+        `;
+        
+        colDiv.appendChild(cardDiv);
+        return colDiv;
+    };
 
 // Funkcija za prikazivanje zadataka
 export const displayTasks = (tasks = getTasks()) => {
