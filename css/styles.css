@@ -364,3 +364,41 @@ input::placeholder {
     font-weight: bold; 
     padding: 1px 1px;
 }
+
+/* Shake za modal */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 1100;
+    padding: 1rem;
+}
+
+.custom-toast {
+    background-color: #343a40;
+    color: #ffc107;
+    animation: slideInUp 0.5s ease-in-out;
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
