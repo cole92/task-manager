@@ -402,3 +402,55 @@ input::placeholder {
         opacity: 1;
     }
 }
+
+/* Responsive filter-sort-search-input-addTask */
+@media (max-width: 767.98px) {
+    .filter-buttons, .sort-buttons {
+        flex: 0 0 50%; /* Svako dugme zauzima 50% sirine */
+        max-width: 50%; /* Osigurava da dugmad ne prelaze 50% */
+    }
+    .search-bar {
+        flex: 0 0 100%; /* Search bar zauzima punu sirinu */
+        max-width: 100%;
+        margin-top: 10px;
+    }
+    .filter-btn, .sort-btn {
+        width: 90%;
+    }
+    
+}
+
+.text-md-center {
+    text-align: center;
+}
+
+.text-md-end {
+    text-align: right;
+}
+
+@media (min-width: 768px) {
+    .filter-buttons {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .sort-buttons {
+        flex: 0 0 33%;
+        max-width: 33%;
+    }
+    .search-bar {
+        flex: 0 0 34%;
+        max-width: 34%;
+    }
+    
+    #addTaskBtn {
+        width: 99%;
+    }
+    #btnDiv {
+        justify-content: end;
+    }
+    #taskDiv {
+        padding-left: 7%;
+    }
+   
+}
+
