@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
@@ -10,17 +11,17 @@ body {
     align-items: center;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    background-color: #f4f4f4;
+    background-color: #e8e8e8;
 }
 
 .container {
-    background: #fff;
+    background: #ffffff;
     padding: 20px;
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    height: 90vh; /* Ogranicavam visinu kontejnera */
+    height: 90vh;
 }
 
 h1 {
@@ -28,56 +29,63 @@ h1 {
     margin-bottom: 20px;
     font-weight: 700;
     font-size: 2.5rem;
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Stilizacija za input polje */
 .form-control {
-    border-color: #ccc;
-    box-shadow: ghostwhite;
+    border-color: #cccccc;
+    background-color: #f9f9f9;
+    box-shadow: none;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .form-control:focus {
-    border-color: #aaa;
-    box-shadow: none;
+    border-color: #888888;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 input[type="text"] {
     border: none;
     border-radius: 20px;
-    box-shadow: none;
-    border-bottom: 2px solid #ccc;
+    border-bottom: 2px solid #cccccc;
     font-family: 'Montserrat', sans-serif;
 }
 input[type="text"]:focus {
     outline: none;
-    border-bottom: 2px solid #24292e;
-    box-shadow: none;
+    border-bottom: 2px solid #444444;
 }
 input::placeholder {
     font-family: 'Montserrat', sans-serif;
+    color: #aaaaaa;
 }
 
-/* Filter i sort button i dropDown */
-.filter-buttons .btn {
+/* Filter i sort dugmad i dropDown */
+.filter-buttons .btn,
+.sort-buttons .btn {
     font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    color: #444444;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.sort-buttons .form-select {
-    font-family: 'Montserrat', sans-serif;
+.filter-buttons .btn:hover,
+.sort-buttons .btn:hover {
+    background-color: #f0f0f0;
+    color: #222222; /* Boja postaje tamnija na hover */
 }
-.btn-dark, .btn-secondary, .btn-success, .btn-warning {
-    font-family: 'Montserrat', sans-serif;
+
+.dropdown-menu {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
 .dropdown-menu .dropdown-item {
     font-family: 'Montserrat', sans-serif;
-}
-
-.dropdown-toggle::after {
-    display: none;
-}
-.dropdown-menu {
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #333333;
 }
 
 .dropdown-menu .dropdown-item:hover {
@@ -85,26 +93,16 @@ input::placeholder {
     color: #2b4e70;
 }
 
-.filter-btn, .sort-btn {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-}
-.filter-btn:hover, .sort-btn:hover {
-    background-color: #343a40;
-}
-
 /* Dugme za brisanje i oznacavanje zadatka kao zavrsenog */
 .checkButtons {
     margin: 5px;
-    font-size: 0.7rem; 
+    font-size: 0.7rem;
     padding: 0.2rem 0.5rem;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    flex: 1;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #6c757d;
-    color: #fff;
+    color: #ffffff;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 .checkButtons:focus {
     outline: none;
@@ -112,6 +110,7 @@ input::placeholder {
 }
 .checkButtons:hover {
     transform: scale(1.05);
+    background-color: #5a6268;
 }
 .complete-btn:hover {
     background-color: #003873;
@@ -120,7 +119,7 @@ input::placeholder {
     background-color: #80001a;
 }
 .checkButtons i {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* Stilovi za kartice i grid sistem za prikaz zadataka */
@@ -137,18 +136,24 @@ input::placeholder {
     flex-direction: column;
     justify-content: space-between;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
 }
+
 .task-card .card-body {
     display: flex;
     flex-direction: column;
     flex: 1;
+    font-family: 'Montserrat', sans-serif;
 }
 .task-card .card-title {
     font-size: 1.25rem;
     font-weight: bold;
+    color: #333333;
 }
 .task-card .card-text {
     font-size: 1rem;
+    color: #555555;
 }
 .task-card .card-body .btn-group {
     display: flex;
@@ -158,17 +163,16 @@ input::placeholder {
 
 /* Stilovi deaktiviranje - aktiviranje zadataka */
 .task-card.completed {
-    background-color: #e0e0e0;
+    background-color: #a0a0a0;
     color: #9e9e9e;
     border-color: #bdbdbd;
     box-shadow: none;
-    opacity: 0.6; 
+    opacity: 0.6;
 }
 .task-card.completed:hover {
-   transform: none;
-   box-shadow: 1px 2px 3px 0 rgba(1, 0, 0, 0.1);
-   opacity: 0.8;
-
+    transform: none;
+    box-shadow: 1px 2px 3px 0 rgba(1, 0, 0, 0.1);
+    opacity: 0.8;
 }
 .task-card.completed .checkButtons {
     pointer-events: auto;
@@ -183,45 +187,33 @@ input::placeholder {
 
 /* Stilovi za prioritete */
 .priority-high {
-    border: 1px solid darkred;
-    /*border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(139, 0, 0, 0.2);
-    background: linear-gradient(to right, rgba(139, 0, 0, 0.2), transparent);
-    transition: transform 0.2s, box-shadow 0.2s;*/   
+    border-left: 4px solid darkred;
+    background-color: #ffe6e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(139, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .priority-medium {
-    border: 1px solid darkorange;
-    /*border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(255, 140, 0, 0.2); 
-    background: linear-gradient(to right, rgba(255, 140, 0, 0.2), transparent);
-    transition: transform 0.2s, box-shadow 0.2s;*/
-    
+    border-left: 4px solid darkorange;
+    background-color: #fff4e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(255, 140, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .priority-low {
-    border: 1px solid darkgreen;
-    /*border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(34, 139, 34, 0.2);
-    background: linear-gradient(to right, rgba(34, 139, 34, 0.2), transparent);
-    transition: transform 0.2s, box-shadow 0.2s;*/
-    
+    border-left: 4px solid darkgreen;
+    background-color: #e6ffee;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(34, 139, 34, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 .no-priority {
-    border: 1px solid #cccccc;
-    /*border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(128, 128, 128, 0.2);
-    background: linear-gradient(to right, rgba(192, 192, 192, 0.2), transparent);
-    transition: transform 0.2s, box-shadow 0.2s;*/
-    
+    border-left: 4px solid #dcdcdc;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(128, 128, 128, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
-/* Hover efekat za sve prioritete */
-
-/*.priority-high:hover,
-.priority-medium:hover,
-.priority-low:hover,
-.no-priority:hover {
-    transform: scale(1.02); 
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
-}*/
 
 /* Ogranicavanje visine naslova */
 .card-title {
@@ -238,72 +230,74 @@ input::placeholder {
 }
 .scrollable-content {
     overflow-y: auto;
-    overflow-x: hidden; 
-    flex-grow: 1; 
-    scrollbar-width: none; /* Sakriva skrol bar u Firefoxu */
-    -ms-overflow-style: none;  /* Sakriva skrol bar u IE i Edge */
+    overflow-x: hidden;
+    flex-grow: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 .scrollable-content::-webkit-scrollbar {
-    display: none; /* Sakriva skrol bar u Chrome, Safari i Opera */
+    display: none;
 }
 
 /* Modalni prozor */
 .modal-content {
     border-radius: 10px;
-  }
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
 
- /* Stilizacija dugmadi za prioritete */
+/* Stilizacija dugmadi za prioritete */
 .modal .btn-check:checked + .btn-outline-secondary,
 .modal .btn-check:checked + .btn-outline-success,
 .modal .btn-check:checked + .btn-outline-warning,
 .modal .btn-check:checked + .btn-outline-danger {
     background-color: #f0f0f0;
-    border-color: #ccc;
+    border-color: #cccccc;
 }
-
 .modal .btn-group {
     display: flex;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
 }
-
 .modal .btn-group .btn {
-    border: 1px solid #ccc;
-    background-color: #f0f0f0;
-    color: rgb(80, 80, 80);
+    border: 1px solid #cccccc;
+    background-color: #ffffff;
+    color: #444444;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
-.modal .btn-outline-secondary, .btn-outline-danger{
+
+.modal .btn-outline-secondary, .btn-outline-danger {
     border-radius: 20px;
 }
 
 .modal .btn-group .btn:hover {
     transform: scale(1.05);
+    background-color: #f8f9fa;
 }
 
 /* Promena boje teksta pri prelasku i fokusu */
 .modal .btn-group .btn-outline-secondary:hover,
 .modal .btn-group .btn-outline-secondary:focus {
     color: #007bff;
-    border-color: #ccc;
+    border-color: #cccccc;
 }
 .modal .btn-group .btn-outline-success:hover,
 .modal .btn-group .btn-outline-success:focus {
     color: #28a745;
-    border-color: #ccc;
+    border-color: #cccccc;
 }
 .modal .btn-group .btn-outline-warning:hover,
 .modal .btn-group .btn-outline-warning:focus {
     color: #ffc107;
-    border-color: #ccc;
+    border-color: #cccccc;
 }
 .modal .btn-group .btn-outline-danger:hover,
 .modal .btn-group .btn-outline-danger:focus {
     color: #dc3545;
-    border-color: #ccc;
+    border-color: #cccccc;
 }
-
 .modal .btn-check:checked + .btn-outline-secondary {
     color: #007bff;
 }
@@ -323,12 +317,14 @@ input::placeholder {
     text-align: center;
     font-size: 1.2rem;
     margin-bottom: 10px;
+    color: #444444;
 }
 
 /* Dugmici na modalu */
 .modal-footer {
     display: flex;
     justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
 }
 .modal-footer .btn {
     flex: 1;
@@ -340,12 +336,17 @@ input::placeholder {
 .modal-footer .btn-primary {
     margin-right: 0;
 }
+
 /* Input za ime zadatka na modalu */
 #taskModalLabel {
     border: none;
+    box-shadow: none;
     font-size: 2rem;
     margin-left: -15px;
     cursor: text;
+    color: #333333;
+    background-color: transparent;
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* Search bar i prikaz poruke o pretrazi */
@@ -354,30 +355,44 @@ input::placeholder {
     justify-content: center;
     font-style: italic;
     font-size: 1.1rem;
-    color: #555;
+    color: #555555;
     margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* Higlight slova koja se podudaraju sa pretragom */
+/* Highlight slova koja se podudaraju sa pretragom */
 .highlight {
     color: #004a98;
-    font-weight: bold; 
+    font-weight: bold;
     padding: 1px 1px;
 }
 
 /* Shake za modal */
 @keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
 }
 
 .shake {
     animation: shake 0.5s ease-in-out;
 }
-
 .toast-container {
     position: fixed;
     bottom: 0;
@@ -385,11 +400,11 @@ input::placeholder {
     z-index: 1100;
     padding: 1rem;
 }
-
 .custom-toast {
     background-color: #343a40;
     color: #ffc107;
     animation: slideInUp 0.5s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
 }
 
 @keyframes slideInUp {
@@ -405,19 +420,20 @@ input::placeholder {
 
 /* Responsive filter-sort-search-input-addTask */
 @media (max-width: 767.98px) {
-    .filter-buttons, .sort-buttons {
-        flex: 0 0 50%; /* Svako dugme zauzima 50% sirine */
-        max-width: 50%; /* Osigurava da dugmad ne prelaze 50% */
+    .filter-buttons,
+    .sort-buttons {
+        flex: 0 0 50%;
+        max-width: 50%;
     }
     .search-bar {
-        flex: 0 0 100%; /* Search bar zauzima punu sirinu */
+        flex: 0 0 100%;
         max-width: 100%;
         margin-top: 10px;
     }
-    .filter-btn, .sort-btn {
+    .filter-btn,
+    .sort-btn {
         width: 90%;
     }
-    
 }
 
 .text-md-center {
@@ -441,7 +457,6 @@ input::placeholder {
         flex: 0 0 34%;
         max-width: 34%;
     }
-    
     #addTaskBtn {
         width: 99%;
     }
@@ -451,6 +466,4 @@ input::placeholder {
     #taskDiv {
         padding-left: 7%;
     }
-   
 }
-
