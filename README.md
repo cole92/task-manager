@@ -40,7 +40,8 @@ Ovaj projekat je jednostavna aplikacija za upravljanje zadacima koja omogucava k
 - Brisanje zadataka: Korisnici mogu obrisati zadatak.
 - Oznacavanje zadataka kao zavrsenih: Korisnici mogu oznaciti zadatke kao zavrsene ili ih reaktivirati.
 - Filtriranje i sortiranje zadataka: Korisnici mogu filtrirati zadatke po statusu (svi, zavrseni, nezavrseni) i sortirati ih po datumu i prioritetu.
-- Pretraga zadataka: Korisnici mogu pretrazivati zadatke po imenu ili opisu.
+- Pretraga zadataka: Korisnici mogu pretrazivati zadatke po imenu ili opisu. Tekst koji se podudara sa unetim pojmom u pretrazi automatski se ističe plavom bojom kako bi korisnici lakše identifikovali relevantne zadatke.
+
 
 **Prioriteti zadataka: Zadaci su vizualno diferencirani na osnovu prioriteta koji im je dodeljen**:
 
