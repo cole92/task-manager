@@ -13,13 +13,17 @@
     <div class="container">
         <h1>Task Manager</h1>
         <!--Forma sa inputom i dugmetom za dodavanje zadatka-->
-        <form id="task-form" class="d-flex mb-3">
-            <input type="text" id="task-input" class="form-control me-2" placeholder="Enter new task" required>
-            <button type="submit" class="btn btn-dark"><i class="fas fa-plus"></i> Add Task</button>
+        <form id="task-form" class="row mb-3">
+            <div class="col-12 col-md-10 mb-2 mb-md-0" id="taskDiv">
+                <input type="text" id="task-input" class="form-control" placeholder="Enter new task" required>
+            </div>
+            <div class="col-12 col-md-2 d-grid" id="btnDiv">
+                <button id="addTaskBtn" type="submit" class="btn btn-dark"><i class="fas fa-plus"></i> Add Task</button>
+            </div>
         </form>
         <!--DropDown za filtriranje (All,Completed,Pending)-->
-        <div class="d-flex justify-content-between align-items-center mb-2">
-            <div class="filter-buttons">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
+            <div class="filter-buttons col-12 col-md-3 order-1 order-md-1">
                 <div class="dropdown">
                     <button class="btn btn-secondary filter-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Filter Tasks
@@ -32,21 +36,13 @@
                 </div>
             </div>
             <!--Search bar-->
-            <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container-fluid">
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <form class="d-flex ms-3">
-                                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search tasks" aria-label="Search">
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <div class="search-bar col-12 col-md-6 order-3 order-md-2 text-md-center">
+                <form class="d-flex">
+                    <input id="search-input" class="form-control me-2" type="search" placeholder="Search tasks" aria-label="Search">
+                </form>
+            </div>
             <!--DropDown za sortiranje po datumu i prioritetu-->
-            <div class="sort-buttons ms-3">
+            <div class="sort-buttons col-12 col-md-3 order-2 order-md-3 text-md-end">
                 <div class="dropdown">
                     <button class="btn btn-secondary sort-btn dropdown-toggle" type="button" id="dropdownSortButton" data-bs-toggle="dropdown" aria-expanded="false">
                         Sort Tasks
@@ -137,7 +133,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-            You have unsaved changes. Please save your changes before closing the modal. Click again outside the modal to discard changes.
+            You have unsaved changes. Please save your changes before closing the modal. Click 'Close' or click outside the modal again to discard the changes.
         </div>
     </div>
 </div>
