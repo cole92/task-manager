@@ -149,7 +149,6 @@ let allowClose = false;
 
 document.getElementById('edit-task-form').addEventListener('input', (e) => {
     const target = e.target;
-    console.log('Detected change on:', target);
     // Provera da li se dogadjaj desio na relevantnim poljima
     if (target.matches('#edit-task-desc') ||
         target.matches('input[name="btnradio"]')) {
@@ -159,7 +158,6 @@ document.getElementById('edit-task-form').addEventListener('input', (e) => {
 });
 document.getElementById('taskModalLabel').addEventListener('input', (e) => {
     const target = e.target;
-    console.log('Detected change on:', target);
         if (target.matches('#taskModalLabel')) {
             
             isDirty = true;

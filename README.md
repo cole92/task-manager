@@ -1,104 +1,56 @@
-# task-manager
+# Task Manager (Vanilla JavaScript)
 
-1. Naslov projekta
+A small task management app built as a learning/school project. It uses **vanilla JavaScript (ES modules)**, **Bootstrap**, and **LocalStorage** to manage tasks with a clean UI and simple UX patterns.
 
-# Task Management App
+## Features
+- Create, edit, and delete tasks
+- Mark tasks as **completed** / **reactivate**
+- Filter: **All / Completed / Pending**
+- Sort by **date** (Newest/Oldest) and **priority** (Highest/Lowest)
+- Search by title/description with highlighted matches
+- UX details: modal-based editing, toast warnings, and “unsaved changes” protection
 
-2. Opis projekta
+## Tech stack
+- HTML5
+- CSS3
+- JavaScript (ES6+ modules)
+- Bootstrap 5
+- LocalStorage API
 
-Ovaj projekat je jednostavna aplikacija za upravljanje zadacima koja omogucava korisnicima kreiranje, uredjivanje, filtriranje, sortiranje, brisanje i oznacavanje zadataka kao zavrsenih. Aplikacija koristi moderni dizajn i omogucava jednostavnu interakciju sa zadacima kroz intuitivni korisnicki interfejs.
+## Run locally
+### Option A (quick)
+Open `index.html` in your browser.
 
-3. **Tehnologije koriscene u projektu**
+### Option B (recommended)
+Run a simple local server:
+```bash
+python3 -m http.server 5173
+```
+Then open:
+- http://localhost:5173
 
-- HTML5: Struktura aplikacije
-- CSS3: Stilizacija i dizajn aplikacije
-- JavaScript (ES6+): Funkcionalnosti aplikacije, manipulacija DOM-a, upravljanje zadacima
-- Bootstrap 5: Korisnicki interfejs, modali, stilizacija dugmadi
-- LocalStorage API: Skladistenje podataka u pretrazivacu
+(You can also use VS Code **Live Server**.)
 
-4. **Struktura projekta**
-
-/project-root
-│
+## Project structure
+```txt
+.
 ├── index.html
-├── /css
+├── css/
 │   └── styles.css
-├── /js
-│   ├── main.js
-│   ├── events.js
-│   ├── storage.js
-│   ├── ui.js
-│   ├── task.js
-│   └── taskUtils.js
-└── /assets
-    └── images, icons, etc.
+└── js/
+    ├── main.js        # app init
+    ├── events.js      # event listeners (CRUD, filters, sort, search)
+    ├── storage.js     # LocalStorage CRUD
+    ├── ui.js          # UI rendering + modal helpers
+    ├── task.js        # Task model
+    └── taskUtils.js   # filter/sort helpers + formatting
+```
 
-5. **Opis funkcionalnosti**
+## Data storage
+Tasks are stored in the browser using LocalStorage, so they persist after refresh/close (on the same device/browser).
 
-- Kreiranje zadataka: Korisnici mogu uneti naziv zadatka i otvoriti modalni prozor za dalje uredjivanje i dodeljivanje prioriteta.
-- Izmena zadataka: Korisnici mogu otvoriti postojece zadatke i izmeniti njihovo ime, opis i prioritet.
-- Brisanje zadataka: Korisnici mogu obrisati zadatak.
-- Oznacavanje zadataka kao zavrsenih: Korisnici mogu oznaciti zadatke kao zavrsene ili ih reaktivirati.
-- Filtriranje i sortiranje zadataka: Korisnici mogu filtrirati zadatke po statusu (svi, zavrseni, nezavrseni) i sortirati ih po datumu i prioritetu.
-- Pretraga zadataka: Korisnici mogu pretrazivati zadatke po imenu ili opisu. Tekst koji se podudara sa unetim pojmom u pretrazi automatski se ističe plavom bojom kako bi korisnici lakše identifikovali relevantne zadatke.
+## Status
+This is a learning project and may be archived (not actively maintained).
 
-
-**Prioriteti zadataka: Zadaci su vizualno diferencirani na osnovu prioriteta koji im je dodeljen**:
-
-- Visoki prioritet: Oznacen crvenom bojom.
-- Srednji prioritet: Oznacen narandzastom bojom.
-- Niski prioritet: Oznacen zelenom bojom.
-- Bez prioriteta: Oznacen sivom bojom.
-
-Ove boje omogucavaju brz pregled i lakse upravljanje zadacima
-
-6. **Opis modula (JavaScript fajlova)**
-
-**main.js**
-
-- Zaduzen za inicializaciju aplikacije.
-- Sadrzi DOMContentLoaded event koji pokrece inicialno ucitavanje zadataka.
-
-**events.js**
-
-- Sadrzi sve event listenere potrebne za interakciju sa aplikacijom.
-- Obuhvata dogadjaje za kreiranje, uredjivanje, brisanje, oznacavanje zadataka i rad sa modalnim prozorima.
-- Upravljanje filtriranjem, sortiranjem i pretragom zadataka.
-
-**storage.js**
-
-- Zaduzen za upravljanje zadacima u Local Storage-u.
-- Sadrzi funkcije za dodavanje, uzimanje, azuriranje i brisanje zadataka.
-
-**ui.js**
-
-- Zaduzen za upravljanje korisnickim interfejsom.
-- Sadrzi funkcije za kreiranje i prikazivanje zadataka na ekranu.
-- Sadrzi funkcije za upravljanje modalnim prozorima.
-
-**task.js**
-
-- Sadrzi klasu Task koja predstavlja model zadatka.
-- Klasa definise strukturu zadatka sa svim potrebnim atributima.
-
-**taskUtils.js**
-
-- Sadrzi pomocne funkcije za filtriranje, sortiranje, formatiranje datuma i isticanje teksta.
-- Ove funkcije olaksavaju manipulaciju i prikaz zadataka u aplikaciji.
-
-7. Uputstvo za instalaciju i pokretanje projekta
-
-**Pokretanje projekta**
-
-- Otvori index.html fajl u pretrazivacu.
-
-**Zavrsne napomene:**
-
-- Aplikacija koristi Local Storage za cuvanje zadataka, sto znaci da podaci ostaju sacuvani cak i nakon zatvaranja pretrazivaca.
-
-8. Potencijalna poboljsanja i dalje smernice
-
-- Implementacija back-end servera: Trenutno se zadaci cuvaju u Local Storage-u. Moze se implementirati back-end server za skladistenje zadataka i omogucavanje sinhronizacije izmedju razlicitih uredjaja.
-- Napredna validacija unosa: Dodavanje dodatnih pravila za validaciju unosa korisnika u formama.
-- Podrska za vise korisnika: Omogucavanje kreiranja i upravljanja zadacima za vise korisnika sa razlicitim nalozima.
-- Dodavanje notifikacija i obavestenja: Implementacija sistema obavestenja za podsecanje na rokove ili promene zadataka.
+## License
+See `LICENSE`.
