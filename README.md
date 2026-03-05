@@ -52,5 +52,11 @@ Tasks are stored in the browser using LocalStorage, so they persist after refres
 ## Status
 This is a learning project and may be archived (not actively maintained).
 
+## Screenshots
+
+![Filtering tasks](assets/task-manager-01.png)
+![Task list + sorting](assets/task-manager-02.png)
+![Search](assets/task-manager-03.png)
+
 ## License
 See `LICENSE`.
